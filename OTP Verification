@@ -1,0 +1,43 @@
+import math
+import random
+import tkinter as tk
+from tkinter import messagebox
+# Function to generate OTP
+def generateOTP():
+    digits = "0123456789"
+    OTP = ""
+    for i in range(4):
+        OTP += digits[math.floor(random.random() * 10)]
+    return OTP
+
+
+# Function to verify OTP
+def verifyOTP():
+    user_input = otp_entry.get()
+    generated_otp = otp_label["text"]
+
+    if user_input == generated_otp:
+        messagebox.showinfo("Success", "OTP verified successfully!")
+    else:
+        messagebox.showerror("Error", "Invalid OTP. Please try again.")
+
+
+# Create GUI window
+root = tk.Tk()
+root.title("OTP Verification")
+root.configure(bg='#856ff8')
+# Generate OTP
+generated_otp = generateOTP()
+otp_label = tk.Label(root, text=generated_otp,font=("Helvetica", 24,"bold"))
+otp_label.pack(pady=20)
+
+# OTP Entry
+otp_entry = tk.Entry(root, font=("Helvetica", 25))
+otp_entry.pack(pady=10)
+
+# Verify Button
+verify_button = tk.Button(root, text="Verify OTP",bg='magenta',command=verifyOTP, font=("Helvetica",15,'bold'))
+verify_button.pack()
+
+# Run GUI application
+root.mainloop()
