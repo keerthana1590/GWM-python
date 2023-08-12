@@ -1,0 +1,29 @@
+import tkinter 
+import pyshorteners
+
+def shorten():
+    shortener = pyshorteners.Shortener()
+    short_url = shortener.tinyurl.short(longurl_entry.get())
+    print(shorturl_entry.insert(0, short_url))
+
+
+root = tkinter.Tk()
+root.title("URL Shortener")
+root.geometry("600x500")
+root.configure(bg="gray22")
+
+
+longurl_label= tkinter.Label(root, text="Enter Long URL",fg="white",bg="VioletRed3",font=("Helvetica",20,"bold"))
+longurl_entry = tkinter.Entry(root,width=27,font=("Arial",25))
+shorturl_label= tkinter.Label(root, text="Output shortened URL",fg="white",bg="VioletRed3",font=("Helvetica",20,"bold",))
+shorturl_entry = tkinter.Entry(root,width=27,font=("Arial",25))
+shorten_button = tkinter.Button(root,text="Shorten URL",fg="white",bg="dodger blue",font=("Helvetica",16,"bold"),height=1,width=15,command=shorten)
+
+
+longurl_label.pack(pady=20)
+longurl_entry.pack()
+shorturl_label.pack(pady=20)
+shorturl_label.pack()
+shorten_button.pack(pady=20)
+
+root.mainloop()
